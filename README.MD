@@ -23,7 +23,6 @@
  404页面配置 ./errors:/var/www/errors
  
  
-
 ## php 配置文件
 
 
