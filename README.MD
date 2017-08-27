@@ -5,6 +5,8 @@
 * 容器也可以更新模版文件中的变量
 * 支持 lets encrypt SSL 的配置，自定义 nginx 配置，php 配置
 * 容器内的 用户，可以通过 uid 方式映射出来
+* 其他安装程序 vim 编辑器、composer、
+
 
 ### 版本信息
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Alpine Version |
@@ -24,7 +26,8 @@
  
  
 ## php 配置文件
-
+- php配置文件         /usr/local/etc/php/conf.d/docker-vars.ini
+- php-fpm 配置        /usr/local/etc/php-fpm.d/
 
 ## 重启php
 supervisorctl restart php-fpm
