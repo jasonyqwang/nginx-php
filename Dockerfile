@@ -182,13 +182,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
       --with-jpeg-dir=/usr/include/ && \
     #curl iconv session
     docker-php-ext-install pdo_mysql pdo_sqlite mysqli mcrypt gd exif intl xsl json soap dom zip opcache && \
-    pecl install redis && \
-    pecl install mongodb && \
-    pecl install xdebug && \
-    pecl install swoole && \
-    pecl install sockets && \
     docker-php-source delete && \
-    apk install vim && \
     mkdir -p /etc/nginx && \
     mkdir -p /var/www/app && \
     mkdir -p /run/nginx && \
@@ -201,6 +195,12 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     pip install -U pip && \
     pip install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
+    pecl install redis && \
+    pecl install mongodb && \
+    pecl install xdebug && \
+    pecl install swoole && \
+    pecl install sockets && \
+    apk install vim && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
 #    ln -s /usr/bin/php7 /usr/bin/php
 

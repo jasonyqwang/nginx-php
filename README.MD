@@ -6,6 +6,7 @@
 * 支持 lets encrypt SSL 的配置，自定义 nginx 配置，php 配置
 * 容器内的 用户，可以通过 uid 方式映射出来
 * 其他安装程序 vim 编辑器、composer、
+* 可使用扩展 redis、mongodb、xdebug、swoole、sockets
 
 
 ### 版本信息
@@ -19,6 +20,8 @@
 
 ## 快速开始
 
+生成自己的镜像
+sudo docker build -t vieux/apache:2.0.
 
 ## nginx 配置文件
 * nginx的错误页面，如果需修改的话
