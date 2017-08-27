@@ -195,6 +195,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     pip install -U pip && \
     pip install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
+    pecl install xdebug && \
     pecl install redis && \
     pecl install mongodb && \
     pecl install xdebug && \
