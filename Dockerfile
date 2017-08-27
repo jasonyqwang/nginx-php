@@ -139,8 +139,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
       | sort -u \
   )" \
   && apk add --no-cache --virtual .nginx-rundeps $runDeps \
-  && apk del .build-deps \
-  && apk del .gettext \
+  ## && apk del .build-deps \
+  ## && apk del .gettext \
   && mv /tmp/envsubst /usr/local/bin/ \
   \
   # forward request and error logs to docker log collector
@@ -186,12 +186,6 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
       --with-jpeg-dir=/usr/include/ && \
     #curl iconv session
     docker-php-ext-install pdo_mysql pdo_sqlite mysqli mcrypt gd exif intl xsl json soap dom zip opcache && \
-    pecl install xdebug && \
-    pecl install redis && \
-    pecl install mongodb && \
-    pecl install swoole && \
-    pecl install sockets && \
-    apk install vim && \
     docker-php-source delete && \
     mkdir -p /etc/nginx && \
     mkdir -p /var/www/app && \
@@ -205,7 +199,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     pip install -U pip && \
     pip install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
-    apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
+    ##apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
 #    ln -s /usr/bin/php7 /usr/bin/php
 
 ADD conf/nginx/supervisord.conf /etc/supervisord.conf
@@ -248,7 +242,6 @@ RUN echo "cgi.fix_pathinfo=0" > ${php_vars} &&\
 #    ln -s /etc/php7/php.ini /etc/php7/conf.d/php.ini && \
 #    find /etc/php7/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \;
 
-
 # Add Scripts
 ADD scripts/start.sh /start.sh
 ADD scripts/pull /usr/bin/pull
@@ -256,6 +249,13 @@ ADD scripts/push /usr/bin/push
 ADD scripts/letsencrypt-setup /usr/bin/letsencrypt-setup
 ADD scripts/letsencrypt-renew /usr/bin/letsencrypt-renew
 RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/letsencrypt-setup && chmod 755 /usr/bin/letsencrypt-renew && chmod 755 /start.sh
+
+RUN pecl install xdebug
+RUN pecl install redis
+RUN pecl install mongodb
+RUN pecl install swoole
+RUN pecl install sockets
+RUN apk add --no-cache vim
 
 # copy in code
 ADD src/ /var/www/html/
