@@ -1,11 +1,12 @@
 nginx-php-web:
-  image: registry.cn-hangzhou.aliyuncs.com/js/nginx-phpfpm:0.0.2
+  image: registry.cn-hangzhou.aliyuncs.com/js/nginx-phpfpm:1.0.0
   container_name: nginx_phpfpm
   restart: always
   volumes:
    - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
    - ./conf/nginx/conf.d:/etc/nginx/sites-enabled
    - ./conf/nginx/ssl:/etc/nginx/ssl
+   - ./conf/php/conf.d:/usr/local/etc/php/conf.d
    - /deploy/www:/var/www/html
    - /deploy/wwwlogs:/var/log/nginx
    - ./errors:/var/www/errors
